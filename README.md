@@ -37,7 +37,7 @@ Bad input is an error, never a panic. That covers cut-off blocks, bad Huffman pa
 cargo test
 ```
 
-Rust 2024 edition, Rust 1.85.1 or newer. No crates.io dependencies. The tests include every worked example from the RFC, seeded robustness runs, and seeded runs that keep an encoder and a decoder in step over many blocks. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
+Rust 2024 edition, Rust 1.99.1 or newer. No crates.io dependencies. The tests include every worked example from the RFC, seeded robustness runs, and seeded runs that keep an encoder and a decoder in step over many blocks. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
 
 ## The other repositories
 

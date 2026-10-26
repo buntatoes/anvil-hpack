@@ -6,6 +6,7 @@
 name = "anvil-hpack"
 version = "0.1.1"
 edition = "2024"
+rust-version = "1.99.1"
 authors = ["Buntato <324143321+buntatoes@users.noreply.github.com>"]
 license = "MPL-2.0"
 description = "HPACK header compression for HTTP/2, with size caps on every input."
