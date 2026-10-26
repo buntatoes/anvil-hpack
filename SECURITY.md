@@ -18,4 +18,4 @@ Do not put the details in a public issue.
 - Integers above `u32::MAX`, cut-off fields, bad Huffman padding, and table indexes that don't exist are errors.
 - Fields marked never indexed are never added to a table by the encoder.
 
-Version 0.1.1 is current.
+Version 0.1.2 is current.
