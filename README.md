@@ -37,11 +37,11 @@ Bad input is an error, never a panic. That covers cut-off blocks, bad Huffman pa
 cargo test
 ```
 
-Rust 2024. No crates.io dependencies. The tests include every worked example from the RFC, seeded robustness runs, and seeded runs that keep an encoder and a decoder in step over many blocks. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
+Rust 2024 edition, Rust 1.85.1 or newer. No crates.io dependencies. The tests include every worked example from the RFC, seeded robustness runs, and seeded runs that keep an encoder and a decoder in step over many blocks. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
 
 ## The other repositories
 
-The browser is [anvil-browser](https://github.com/buntatoes/anvil-browser) (Apache-2.0). The page engine is `anvil-engine` (proprietary, not MPL-2.0). These libraries sit next to both. None of them come from crates.io.
+The browser is [anvil-browser](https://github.com/buntatoes/anvil-browser) (Apache-2.0). The page engine is `anvil-engine` (proprietary, not MPL-2.0). These nine libraries sit next to both, and all of them are MPL-2.0. None of them come from crates.io.
 
 | Repository | What it is |
 | --- | --- |
@@ -50,8 +50,9 @@ The browser is [anvil-browser](https://github.com/buntatoes/anvil-browser) (Apac
 | [anvil-hpack](https://github.com/buntatoes/anvil-hpack) | HPACK header compression for HTTP/2 |
 | [anvil-image](https://github.com/buntatoes/anvil-image) | PNG, JPEG, GIF, WebP, ICO, BMP, PPM |
 | [anvil-json](https://github.com/buntatoes/anvil-json) | JSON |
+| [anvil-pqc](https://github.com/buntatoes/anvil-pqc) | ML-KEM-768, X25519, X25519MLKEM768, SHA-3 (not used by the browser yet) |
 | [anvil-ttf](https://github.com/buntatoes/anvil-ttf) | TrueType and OpenType (`glyf`, `CFF `, `kern`, `GPOS`) |
-| [anvil-gpu](https://github.com/buntatoes/anvil-gpu) | Software drawing of boxes, shadows, gradients, and NV12 |
+| [anvil-gpu](https://github.com/buntatoes/anvil-gpu) | Compositor passes for boxes, shadows, gradients, and NV12, on the CPU or a GPU |
 | [anvil-video](https://github.com/buntatoes/anvil-video) | CPU frames and PCM/ADPCM audio in a small MP4 container |
 
 ## License
