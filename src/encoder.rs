@@ -17,6 +17,9 @@ use crate::{DEFAULT_TABLE_SIZE, Header};
 pub struct Encoder {
     table: DynamicTable,
     pending_size_update: Option<usize>,
+    /// Smallest size set since the last block. RFC 7541 section 4.2: when the
+    /// size went below the final one, the next block signals this one first.
+    pending_min_size: Option<usize>,
     use_huffman: bool,
 }
 
@@ -32,6 +35,7 @@ impl Encoder {
         Self {
             table: DynamicTable::new(DEFAULT_TABLE_SIZE),
             pending_size_update: None,
+            pending_min_size: None,
             use_huffman: true,
         }
     }
@@ -61,11 +65,16 @@ impl Encoder {
     pub fn set_max_table_size(&mut self, size: usize) {
         self.table.set_max_size(size);
         self.pending_size_update = Some(size);
+        self.pending_min_size = Some(self.pending_min_size.map_or(size, |min| min.min(size)));
     }
 
     /// Encode `headers` as one header block and append it to `out`.
     pub fn encode(&mut self, headers: &[Header], out: &mut Vec<u8>) {
         if let Some(size) = self.pending_size_update.take() {
+            // The decoder evicts to the smallest size, then grows to the last.
+            if let Some(min) = self.pending_min_size.take().filter(|&min| min < size) {
+                encode_integer(min, 5, 0x20, out);
+            }
             encode_integer(size, 5, 0x20, out);
         }
         for header in headers {

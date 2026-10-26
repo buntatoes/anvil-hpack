@@ -10,7 +10,7 @@
   </p>
 </div>
 
-Version 0.1.0.
+Version 0.1.1.
 
 The browser uses it to read and write HTTP/2 headers. I wrote it from RFC 7541.
 
@@ -18,6 +18,7 @@ The browser uses it to read and write HTTP/2 headers. I wrote it from RFC 7541.
 
 - `Decoder` reads header blocks and keeps the dynamic table between blocks on one connection.
 - `Encoder` writes header blocks. Fields that are already in a table go out as an index, others go out as literals, and strings use the Huffman code when it isn't longer.
+- `Encoder::set_max_table_size` can be called more than once between blocks. The next block then sends the smallest size first and the last size after it, as RFC 7541 section 4.2 asks, so the decoder drops the same entries the encoder did. 0.1.0 only sent the last size, so after a shrink and a grow the two tables could drift apart.
 - `Header::sensitive` marks a field as never indexed, so it never lands in a table. Use it for things like `authorization`.
 - The integer, Huffman, and table pieces are public too: `encode_integer`, `decode_integer`, `huffman_encode`, `huffman_decode`, `DynamicTable`, and `static_entry`.
 
@@ -36,7 +37,7 @@ Bad input is an error, never a panic. That covers cut-off blocks, bad Huffman pa
 cargo test
 ```
 
-Rust 2024. No crates.io dependencies. The tests include every worked example from the RFC and seeded robustness runs. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
+Rust 2024. No crates.io dependencies. The tests include every worked example from the RFC, seeded robustness runs, and seeded runs that keep an encoder and a decoder in step over many blocks. Set `ANVIL_ROBUSTNESS_MS` for a longer run.
 
 ## The other repositories
 
