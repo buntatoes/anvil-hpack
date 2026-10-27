@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: LicenseRef-PolyForm-Noncommercial-1.0.0-OR-Commercial
 // Copyright (c) 2026 Buntato
 //! Time-budgeted fuzz runs for HPACK: encoder and decoder kept in step over
 //! many blocks, table size changes, mutated blocks, Huffman corner cases, and
