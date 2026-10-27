@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>anvil-hpack</h1>
+  <h1>Anvil HPACK</h1>
   <p>HPACK header compression for HTTP/2.</p>
   <p>
     <img src="https://img.shields.io/badge/release-v.01-e8c37a?style=flat-square" alt="v.01" />
